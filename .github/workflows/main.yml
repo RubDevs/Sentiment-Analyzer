@@ -1,0 +1,19 @@
+name: Build and Publish
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish_docker_image:
+    name: Publish Docker image
+    uses: ./.github/workflows/_docker_build_and_publish.yml
+    with:
+      tag: dev
+    secrets:
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}

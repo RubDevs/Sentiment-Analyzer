@@ -1,0 +1,16 @@
+name: Deploy - QA
+
+on:
+  push:
+    tags:
+      - qa-**
+
+jobs:
+  publish_docker_image:
+    name: Publish Docker image
+    uses: ./.github/workflows/_docker_build_and_publish.yml
+    with:
+      tag: qa
+    secrets:
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
