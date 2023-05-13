@@ -6,7 +6,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Sentiments')
 @Controller('sentiments')
-export class AnalizerController {
+export class AnalyzerController {
   constructor(private readonly analizerService: AnalyzerService) {}
 
   @ApiOperation({

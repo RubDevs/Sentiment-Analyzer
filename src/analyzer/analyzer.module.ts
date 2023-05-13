@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AnalizerController } from './analizer.controller';
+import { AnalyzerController } from './analyzer.controller';
 import { AnalyzerService } from './analyzer.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Sentiment, SentimentSchema } from './schemas/sentiment.schema';
@@ -11,7 +11,7 @@ import { GoogleSentimentAnalizer } from './providers/google-sentiment-analizer';
       { name: Sentiment.name, schema: SentimentSchema },
     ]),
   ],
-  controllers: [AnalizerController],
+  controllers: [AnalyzerController],
   providers: [
     AnalyzerService,
     {

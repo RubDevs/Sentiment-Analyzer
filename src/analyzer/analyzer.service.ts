@@ -9,15 +9,21 @@ import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 export class AnalyzerService {
   constructor(
     @Inject('SentimentAnalyzer')
-    private readonly sentimentAnalizer: SentimentAnalyzer,
+    private readonly sentimentAnalyzer: SentimentAnalyzer,
     @InjectModel(Sentiment.name)
-    private sentimentModel: Model<SentimentDocument>,
+    private readonly sentimentModel: Model<SentimentDocument>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: LoggerService,
   ) {}
+  /**
+   * Function that analyzes the sentiment of a given text using a sentiment
+   * analyzer and creates a sentiment document with the score and magnitude of the sentiment.
+   * @param {string} text - The text that needs to be analyzed for sentiment.
+   * @returns The function `analyzeSentiment` returns a Promise that resolves to a `Sentiment` object.
+   */
   async analyzeSentiment(text: string): Promise<Sentiment> {
     try {
       const { score, magnitude } =
-        await this.sentimentAnalizer.analyzeSentiment(text);
+        await this.sentimentAnalyzer.analyzeSentiment(text);
       return this.sentimentModel.create({
         text,
         score,
