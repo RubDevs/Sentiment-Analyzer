@@ -35,6 +35,7 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 ```
+The Cloud Natural Language API uses ADC credentials, in order to authenticate to the API you need to enable the API in your project and follow the [instructions](https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev) 
 
 ## Test
 
@@ -52,3 +53,7 @@ $ npm run test:cov
 ## Swagger
 
 The API is documented using [Swagger](https://docs.nestjs.com/openapi/introduction). You can view the API docs when running the project locally by going to http://localhost:3000/docs.
+
+## CI
+
+Every push to main will trigger the CI pipeline to build and publish a Docker image with the dev tag to my public [Docker Hub](https://hub.docker.com/r/rubsdevs/sentiment-analyzer/) and there’s also a way to tag the image for a different environment, if a tag called `qa-*` is pushed the image will be tagged as qa. This is only to demonstrate how we could publish different versions of the image.
